@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container mt-4 p-4">
+  <form
+    action=""
+    method="post"
+    enctype="multipart/form-data"
+    class="form-control bg-primary"
+  >
+    {% csrf_token %}
+    <h5 class="text-white mb-4">Add Experience</h5>
+    <input type="hidden" name="user" value="{{request.user.id}}" />
+    {{form.title}} {{form.company_name}} {{form.years}}
+    <input class="btn btn-warning mb-2" type="submit" value="Sign Up" />
+    <h6 class="text-white">{{form.errors}}</h6>
+  </form>
+</div>
+{% endblock %}

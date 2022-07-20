@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+        <div class="row g-0 about-bg rounded overflow-hidden">
+          <div class="text-start">
+            <img class="img-fluid" src="{{post_detail.image.url}}" />
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+        <h1 class="mb-4">{{post_detail.title}}</h1>
+        <p class="mb-4">{{post_detail.body}}</p>
+        <small>created: {{post_detail.created_at}}</small><br />
+        <small>updated: {{post_detail.updated_at}}</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

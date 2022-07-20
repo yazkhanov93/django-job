@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container m-4" style="width: 50%">
+  <form
+    action=""
+    method="post"
+    enctype="multipart/form-data"
+    class="form-control bg-primary text-light"
+  >
+    <h5 class="text-white">Profile</h5>
+    {% csrf_token %}
+    <input type="hidden" name="user" value="{{request.user.id}}" />
+    {{form.firstname}} {{form.lastname}} {{form.image}} {{form.phone}}
+    {{form.email}} {{form.region}} {{form.district}} {{form.birthday}}
+    {{form.profession}} {{form.errors}}
+    <input type="submit" class="btn btn-warning" value="Save" />
+  </form>
+</div>
+
+{% endblock %}

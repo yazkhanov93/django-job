@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container mt-4 p-4">
+  <form
+    action=""
+    method="post"
+    enctype="multipart/form-data"
+    class="form-control bg-primary"
+  >
+    {% csrf_token %}
+    <h5 class="text-white mb-4">Sign Up</h5>
+    <input
+      class="form-control mb-2"
+      type="text"
+      placeholder="mobile number"
+      value="{{request.form.username}}"
+      name="username"
+    />
+    <input
+      class="form-control mb-2"
+      type="password"
+      placeholder="password"
+      value="{{request.form.password1}}"
+      name="password1"
+    />
+    <input
+      class="form-control mb-2"
+      type="password"
+      placeholder="confirm password"
+      value="{{request.form.password2}}"
+      name="password2"
+    />
+    <input class="btn btn-warning mb-2" type="submit" value="Sign Up" />
+    <a href="{% url 'sign_in' %}" class="nav-link text-white">I have account</a>
+    <h6 class="text-white">{{form.errors}}</h6>
+  </form>
+</div>
+{% endblock %}

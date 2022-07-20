@@ -1,0 +1,85 @@
+{% extends "base.html" %} {% block content %}
+<div class="container" style="display: grid; grid-template-columns: 1fr 2fr">
+  <div class="mt-4 p-4 mr-4">
+    <img src="{{profile.image.url}}" alt="" / width="150" height="160"><br />
+    {% if profile.user.id == request.user.id %}
+    <a href="{% url 'profile_setting' %}" class="btn btn-warning mt-2"
+      >profile setting</a
+    >
+    {% endif %}
+    <ul class="list-group list-group-flush mb-4">
+      <li class="list-group-item"><h5>{{profile.firstname}}</h5></li>
+      <li class="list-group-item"><h5>{{profile.lastname}}</h5></li>
+      <li class="list-group-item">{{profile.profession}}</li>
+      <li class="list-group-item">{{profile.birthday}}</li>
+      <li class="list-group-item">{{profile.phone}}</li>
+      <li class="list-group-item">{{profile.email}}</li>
+      <li class="list-group-item">{{profile.region}}</li>
+      <li class="list-group-item">{{profile.district}}</li>
+    </ul>
+    <h6 style="width: 50%">
+      Education
+      <a href="{% url 'add_education' %}" class="nav-link" style="float: right"
+        ><i class="fas fa-plus-circle"></i
+      ></a>
+      <hr />
+    </h6>
+    <ul class="list-group list-group-flush" style="width: 80%">
+      {% for educ in education %}
+      <hr />
+      <p>{{educ.title}}</p>
+      <p>{{educ.university}}</p>
+      <p>{{educ.department}}</p>
+      <p>{{educ.degree}}</p>
+      <small>{{educ.years}}</small>
+      <hr />
+      {% endfor %}
+    </ul>
+    <h6 style="width: 50%">
+      Experience
+      <a href="{% url 'add_experience' %}" class="nav-link" style="float: right"
+        ><i class="fas fa-plus-circle"></i
+      ></a>
+    </h6>
+    <ul class="list-group list-group-flush" style="width: 80%">
+      {% for exp in experience %}
+      <hr />
+      <p>{{exp.title}}</p>
+      <p>{{exp.company_name}}</p>
+      <small>{{exp.years}}</small>
+      <hr />
+      {% endfor %}
+    </ul>
+  </div>
+  <div>
+    <div class="navbar">
+      <a href="{% url 'add_post' %}" class="btn btn-outline-success mt-2"
+        >Add Post</a
+      >
+    </div>
+    <hr />
+
+    {% for p in post %}
+    <div class="card" style="width: 28rem; margin-left: 20%">
+      <img
+        class="card-img-top"
+        style="height: 20rem"
+        src="{{p.image.url}}"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{p.title}}</h5>
+        <p class="card-text">{{p.body|truncatechars:50}}</p>
+        <a href="{% url 'post_detail' p.id %}" class="btn btn-primary">Open</a>
+        <a
+          href="{% url 'edit_post' p.id %}"
+          class="btn btn-warning"
+          style="float: right"
+          >Edit</a
+        >
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
